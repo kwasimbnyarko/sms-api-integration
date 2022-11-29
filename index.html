@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SMS API INTEGRATION</title>
+</head>
+    <body>
+        <form id="form" method="post">
+            <br>
+            <input type="text" id="number" placeholder="Number of recipient"><br>
+            <br>
+            <input type="text" id="message" placeholder="Message to be sent"><br>
+            <br>
+            <input type="submit" value="Send">
+
+        </form>
+        <br>
+    <p id="output"></p>
+    </body>
+    <script  type="text/javascript">
+        const form = document.getElementById("form");
+
+        form.addEventListener("submit",function (e){
+
+            e.preventDefault();
+
+            let number = document.getElementById("number").value;
+            let message = document.getElementById("message").value;
+
+            // console.log(number)
+            fetch("https://sms.nalosolutions.com/smsbackend/clientapi/Resl_Nalo/send-message/",{
+                method:"POST",
+                body:JSON.stringify({
+                    "username":"kwasiTest",
+                    "password": "qwerty",
+                    "msisdn":number.toString(),
+                    "message":message.toString(),
+                    "sender_id": "kwasiTest"
+                }),
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                }
+            }).then(function (response){
+                return response.json();
+            }).then(function(data){
+                console.log(data);
+                console.log(data.status);
+                if(data.status == 1701){
+                    console.log("hehe")
+                    return alert("Success, Message Submitted Successfully.\nJob Id: "+data.job_id);
+                }
+                if(data.status == 1702){
+                    return  alert("One of the parameters was not provided or left blank.");
+                }
+                if(data.status == 1704){
+                    return  alert("Invalid message");
+                }
+                if(data.status == 1705){
+                    return  alert("Invalid destination");
+                }
+                if(data.status == 1702){
+                    return  alert("One of the parameters was not provided or left blank.");
+                }
+                if(data.status == 1702){
+                    return  alert("One of the parameters was not provided or left blank.");
+                }
+            });
+        })
+
+
+    </script>
+</html>
