@@ -1,2 +1,2 @@
 # sms-api-integration
-This is a mini project for sending SMS using NALO's SMS APIs
+This is a demo for sending SMS messages with NALO Solutions' APIs.
