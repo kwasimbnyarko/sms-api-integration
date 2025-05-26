@@ -31,11 +31,11 @@
             fetch("https://sms.nalosolutions.com/smsbackend/clientapi/Resl_Nalo/send-message/",{
                 method:"POST",
                 body:JSON.stringify({
-                    "username":"kwasiTest",
-                    "password": "qwerty",
+                    "username":"username", //Check NALO API Docs for more information https://documenter.getpostman.com/view/7705958/Uyr7Hydn
+                    "password": "password",
                     "msisdn":number.toString(),
                     "message":message.toString(),
-                    "sender_id": "kwasiTest"
+                    "sender_id": "username"
                 }),
                 headers: {
                     'Accept': 'application/json',
